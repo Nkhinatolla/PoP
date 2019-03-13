@@ -1,0 +1,13 @@
+def main():
+	file = input("Enter a filename: ")
+	f = open(file, "r")
+	text = f.read()
+	f.close()
+	old = input("Enter the old string to be replaced: ").strip()
+	new = input("Enter the new string to replace the old string: ").strip()
+	text = text.replace(old, new)
+	f = open(file, "w")
+	f.write(text)
+	f.close()
+	print("Done")
+main()
