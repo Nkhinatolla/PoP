@@ -28,8 +28,11 @@ cmd.printing(text, cursor)
 
 cursor = cmd.cmd_ddp(text, cursor) # cmd_ddp - меняем текущую строку со следующим
 cmd.printing(text, cursor)
+
 cursor = (0, 0)
 cursor = cmd.cmd_n(text, cursor, "better") # cmd_ddp - меняем текущую строку со следующим
 cmd.printing(text, cursor)
+
+cursor = cmd.cmd_wq(text, cursor)
 
 
