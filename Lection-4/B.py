@@ -1,8 +1,6 @@
 Dict = {0:["Astana"], 1:["Pavlodar","Karaganda"], 2:["Oskemen"], 3:["Atyrau", "Aktay", "Oral"], 4:["Almaty"]}
 source = input("Input source: ")
 destination = input("Input destination: ")
-
-
 def rec(ind, ans, indexOfSource, indexOfDestination):
 	if not (ind in Dict): 
 		return
