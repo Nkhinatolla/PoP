@@ -46,6 +46,9 @@ def cmd_ddp(s, cur):
 		s[cur[0]], s[cur[0] + 1] = s[cur[0] + 1], s[cur[0]]
 		cur = (cur[0] + 1, cur[1])
 	return cur
+def cmd_n(s, cur, word):
+	cur = (cur[0], s[cur[0]].find(word, cur[1]))
+	return cur
 def printing(s, cur) :
 	for i in range(len(s)):
 		if i == cur[0]:
