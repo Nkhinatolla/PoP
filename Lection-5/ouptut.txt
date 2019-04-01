@@ -1,3 +1,4 @@
-Beautiful is ^better than ugly.
-Complex is better than complicated.
-Simple is better than complex.
+*rse h^Wordtan ugly.
+Explicit is worse than implicit.
+Simple is worse than complex.
+Complex is worse than complicated
