@@ -11,12 +11,20 @@ class FirstWindow(QtWidgets.QMainWindow, firstwindow.Ui_FirstWindow):
         self.label_2.mousePressEvent = self.Signo
 
     def Signo(self, event):
+        global username
+        username = self.lineEdit.text()
+        if (username == ''):
+            username = 'Guest'
         window2.sign = 'o'
         window2.sign_c = 'x'
         window2.show()
         window2.computer()
         self.close()
     def Signx(self, event):
+        global username
+        username = self.lineEdit.text()
+        if (username == ''):
+            username = 'Guest'
         window2.sign = 'x'
         window2.sign_c = 'o'
         window2.show()
@@ -53,8 +61,20 @@ class SecondWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.computer()
         self.status()
         if (self.State):
-            # window3 = ThirdWindow()
+            file = open("standings", "w")
+            ListOfUsers = []
+            if username in users:
+                users[username] = users[username] + self.point
+            else:
+                users[username] = self.point
+            for key in users:
+                ListOfUsers.append((key, users[key]))
+                file.write(key + " " + str(users[key]) + '\n')
+            ListOfUsers =  sorted(ListOfUsers,key=lambda x:(-x[1],x[0]))
+            for i in ListOfUsers:
+                window3.listWidget.addItem(i[0] + " " + str(i[1]))
             window3.show()
+
     def computer(self):
         if (self.State != 0):
             return
@@ -66,12 +86,15 @@ class SecondWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def status(self):
         if (self.check(self.Player_Labels) == True):
             self.State = 1
+            self.point = 2
             self.setWindowTitle(self._translate("Player Win", "Player Win"))
         elif (self.check(self.Comp_Labels) == True):
             self.State = 2
+            self.point = -1
             self.setWindowTitle(self._translate("Computer Win", "Computer Win"))
         elif (len(self.Free_Labels) == 0):
             self.State = 3
+            self.point = 1
             self.setWindowTitle(self._translate("Draw", "Draw"))
     def check(self, l):
         if (1 in l and 2 in l and 3 in l):
@@ -102,6 +125,14 @@ class ThirdWindow(QtWidgets.QMainWindow, statistics.Ui_TableList):
         self.close()
         os.system("python main.py")
         app.exit()
+
+users = {}
+username = ''
+file = open('standings', 'r')
+for line in file:
+    line = line.split()
+    users[line[0]] = int(line[1])
+file.close()
 app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
 window1 = FirstWindow()  # Создаём объект класса FirstWindow()
 window2 = SecondWindow()  # Создаём объект класса SecondWindow()
