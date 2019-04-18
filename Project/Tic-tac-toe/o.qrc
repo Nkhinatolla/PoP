@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="x">
+    <file>x_img.png</file>
+  </qresource>
+  <qresource prefix="o">
+    <file>o_img.png</file>
+  </qresource>
+  <qresource prefix="w">
+    <file>w_img.png</file>
+  </qresource>
+</RCC>
